@@ -17,4 +17,12 @@ export class FoodsController {
   deleteById(@Param('id') id: string) {
     return this.foodsService.deleteById(id);
   }
+  @Post('update/:id')
+  update(@Param('id') id: string, @Body() dto: foodDto) {
+    return this.foodsService.update(id, dto);
+  }
+  @Get(':id')
+  getFoodById(@Param('id') id: string) {
+    return this.foodsService.getFoodById(id);
+  }
 }

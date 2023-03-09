@@ -8,6 +8,18 @@ import { foodDto } from './food.dto';
 export class FoodsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getFoodById(id: string) {
+    const food = await this.prisma.food.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!food) {
+      throw new NotFoundException();
+    }
+    return food;
+  }
+
   async addFood(dto: foodDto) {
     const food = await this.prisma.food.create({
       data: {
