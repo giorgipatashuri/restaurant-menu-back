@@ -37,14 +37,6 @@ export class FoodsService {
   }
 
   async deleteById(id: string) {
-    const food = await this.prisma.food.findUnique({
-      where: {
-        id: id,
-      },
-    });
-    if (!food) {
-      throw new NotFoundException();
-    }
     try {
       await this.prisma.food.delete({
         where: {
